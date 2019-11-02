@@ -33,6 +33,9 @@ const Header = props => {
         <Menu.Item key="/ratings">
           <Link to="/ratings">Ratings</Link>
         </Menu.Item>
+        <Menu.Item key="/settings">
+          <Link to="/settings">Settings</Link>
+        </Menu.Item>
       </Menu>
     </Layout.Header>
   );

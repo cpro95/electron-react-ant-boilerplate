@@ -24,7 +24,7 @@ const LatestMovies = () => {
   });
 
   return (
-    <div className={styles.helloWorld}>
+    <div className={styles.latestmovies}>
       <List
         itemLayout="vertical"
         size="large"

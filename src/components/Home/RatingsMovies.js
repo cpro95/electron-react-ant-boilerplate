@@ -23,7 +23,7 @@ const RatingsMovies = () => {
   });
 
   return (
-    <div className={styles.helloWorld}>
+    <div className={styles.ratingsmovies}>
       <List
         itemLayout="vertical"
         size="large"

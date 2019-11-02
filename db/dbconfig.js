@@ -1,18 +1,29 @@
 const path = require('path');
 const isDev = require('electron-is-dev');
+const Store = require('electron-store');
+
+const store = new Store();
 
 var dbFileName;
-if (isDev && process.argv.indexOf('--noDevServer') === -1) {
-  dbFileName = path.join(path.dirname(__dirname), 'extraResources', 'MyVideos107.db');
+
+if (store.has('dbFileName')) {
+  // console.log(store.get('dbFileName'));
+  // store.get returns array, so (xxx)[]0
+  dbFileName = store.get('dbFileName')[0];
+  module.exports = dbFileName;
 } else {
-  dbFileName = path.join(
-    process.resourcesPath,
-    'extraResources',
-    'MyVideos107.db'
-  );
+  if (isDev && process.argv.indexOf('--noDevServer') === -1) {
+    dbFileName = path.join(
+      path.dirname(__dirname),
+      'extraResources',
+      'MyVideos107.db'
+    );
+  } else {
+    dbFileName = path.join(
+      process.resourcesPath,
+      'extraResources',
+      'MyVideos107.db'
+    );
+  }
+  module.exports = dbFileName;
 }
-
-// console.log(dbFileName);
-// const dbFileName = './MyVideos107.db';
-
-module.exports = dbFileName;

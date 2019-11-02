@@ -5,7 +5,7 @@ const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
-const getDataModule = path.resolve(__dirname, "db","getdata.js");
+const getDataModule = path.resolve(__dirname, 'db', 'getdata.js');
 const getData = require(getDataModule);
 
 // Keep a global reference of the window object, if you don't, the window will
