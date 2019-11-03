@@ -20,12 +20,12 @@ const SearchMovies = () => {
   };
 
   ipcRenderer.on('sql-return', (event, arg) => {
-    if (Object.keys(arg[0])[0] !== 'error') {
+    if (Object.keys(arg[0])[0] === 'error') {
+      setData([{ c00: 'No Data Found!' }]);
+    } else {
       // console.log(arg);
       setData(arg);
       ipcRenderer.removeAllListeners('sql-return');
-    } else {
-      setData([{ c00: 'No Data Found!' }]);
     }
   });
 
@@ -52,7 +52,7 @@ const SearchMovies = () => {
           <List.Item key={item.idMovie}>
             <List.Item.Meta
               avatar={<Avatar shape="square" size={100} src={item.c08} />}
-              title={item.c00}
+              title={`${item.c00} (${item.rating})`}
               description={item.strPath}
             />
             {item.c01}

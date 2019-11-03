@@ -128,26 +128,36 @@ const findAll = (stmt, callback) => {
       }
     };
 
-    // SQL.dbClose = function(databaseHandle, databaseFileName) {
-    //   try {
-    //     let data = databaseHandle.export();
-    //     let buffer = Buffer.alloc(data.length, data);
-    //     fs.writeFileSync(databaseFileName, buffer);
-    //     databaseHandle.close();
-    //     return true;
-    //   } catch (error) {
-    //     console.log("Can't close database file.", error);
-    //     return null;
-    //   }
-    // };
-
     let db = SQL.dbOpen(dbFileName);
     var res = db.exec(stmt);
-    // console.log(res.length);
-    if (res.length === 0) callback([{error: 'No Data found!'}]);
+    // console.log(res.legth);
+    if (res.length === 0) callback([{ error: 'No Data found!' }]);
     else {
       res = _rowsFromSqlDataArray(res[0]);
       res = sqlFilterXml2Json(res);
+      callback(res);
+      db.close();
+    }
+  });
+};
+
+const findAll2 = (stmt, callback) => {
+  SQL().then(SQL => {
+    SQL.dbOpen = function(databaseFileName) {
+      try {
+        return new SQL.Database(fs.readFileSync(databaseFileName));
+      } catch (error) {
+        console.log("Can't open database file.", error.message);
+        return null;
+      }
+    };
+
+    let db = SQL.dbOpen(dbFileName);
+    var res = db.exec(stmt);
+    // console.log(res.legth);
+    if (res.length === 0) callback([{ error: 'No Data found!' }]);
+    else {
+      res = _rowsFromSqlDataArray(res[0]);
       callback(res);
       db.close();
     }
@@ -165,6 +175,16 @@ const getData = query => {
   });
 };
 
+/*
+ * getData2 : query without poster, thumbnail (no sqlFilterXml2Json function)
+ */
+const getData2 = query => {
+  return new Promise((resolve, reject) => {
+    findAll2(query, (res, err) => {
+      if (err) reject(err);
+      else resolve(res);
+    });
+  });
+};
 
-
-module.exports = getData;
+module.exports = { getData, getData2 };

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 // Styles
 import styles from './LatestMovies.scss';
-import { List, Avatar } from 'antd';
+import { List } from 'antd';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -13,10 +13,9 @@ const LatestMovies = () => {
   useEffect(() => {
     ipcRenderer.send(
       'latest-query',
-      'select idMovie, c00, c01, c03, c08, c16, c19, c20, premiered, strPath,rating, uniqueid_value from movie_view order by premiered desc limit 20'
+      'select idMovie, c00, premiered, rating from movie_view order by premiered desc'
     );
   }, []);
-
 
   ipcRenderer.on('sql-return-latest', (event, arg) => {
     setData(arg);
@@ -32,16 +31,17 @@ const LatestMovies = () => {
           onChange: page => {
             console.log(page);
           },
-          pageSize: 5
+          pageSize: 100
         }}
         dataSource={data}
         renderItem={item => (
           <List.Item key={item.idMovie}>
             <List.Item.Meta
-              avatar={<Avatar shape="square" size={100} src={item.c08} />}
-              title={item.c00}
-              description={item.c01}
+            // avatar={<Avatar shape="square" size={100} src={item.c08} />}
+            // title={`${item.c00} (${item.rating})`}
+            // description={item.c01}
             />
+            {`${item.c00} (${item.rating})`}
           </List.Item>
         )}
       />

@@ -6,7 +6,8 @@ const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
 const getDataModule = path.resolve(__dirname, 'db', 'getdata.js');
-const getData = require(getDataModule);
+const getData = require(getDataModule).getData;
+const getData2 = require(getDataModule).getData2;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -104,18 +105,24 @@ app.on('activate', () => {
 ipcMain.on('sql-query', (event, arg) => {
   // console.log('query from renderer : ', arg);
   var stmt = `select idMovie, c00, c01, c03, c08, c16, c19, c20, premiered, strPath,rating, uniqueid_value from movie_view where c00 like '%${arg}%' order by idMovie desc`;
-  getData(stmt).then(res => event.sender.send('sql-return', res));
+  getData(stmt)
+    .then(res => event.sender.send('sql-return', res))
+    .catch(error => console.log(error));
   // ipcMain.removeAllListeners('sql-query');
 });
 
 ipcMain.on('latest-query', (event, arg) => {
   // console.log('query from renderer : ', arg);
-  getData(arg).then(res => event.sender.send('sql-return-latest', res));
+  getData2(arg)
+    .then(res => event.sender.send('sql-return-latest', res))
+    .catch(error => console.log(error));
   // ipcMain.removeAllListeners('sql-query');
 });
 
 ipcMain.on('ratings-query', (event, arg) => {
   // console.log('query from renderer : ', arg);
-  getData(arg).then(res => event.sender.send('sql-return-ratings', res));
+  getData(arg)
+    .then(res => event.sender.send('sql-return-ratings', res))
+    .catch(error => console.log(error));
   // ipcMain.removeAllListeners('sql-query');
 });

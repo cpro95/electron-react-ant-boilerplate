@@ -1,6 +1,6 @@
 {
-  "name": "electron-react-ant-boilerplate",
-  "version": "1.0.9",
+  "name": "search_my_movies",
+  "version": "1.0.0",
   "description": "Electron, Webpack4, React, Babel 7, ES6, PostCSS, Sass, Ant Design",
   "license": "MIT",
   "private": false,
@@ -9,9 +9,9 @@
     "url": "git+https://github.com/kevoj/electron-react-ant-boilerplate.git"
   },
   "author": {
-    "name": "leonardo R",
-    "email": "leonardo.ricog@gmail.com",
-    "url": "https://github.com/kevoj"
+    "name": "cpro95",
+    "email": "cpro95@gmail.com",
+    "url": "https://cpro95.netlify.com"
   },
   "keywords": [
     "react",
@@ -133,7 +133,7 @@
   "build": {
     "productName": "Search_My_Movies",
     "asar": true,
-    "appId": "org.develar.MyApp",
+    "appId": "org.cpro95.Search_My_Movies",
     "files": [
       "dist",
       "main.js",
@@ -166,7 +166,6 @@
     "linux": {
       "target": [
         "deb",
-        "rpm",
         "snap",
         "AppImage"
       ],

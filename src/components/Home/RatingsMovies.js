@@ -12,7 +12,7 @@ const RatingsMovies = () => {
   useEffect(() => {
     ipcRenderer.send(
       'ratings-query',
-      'select idMovie, c00, c01, c03, c08, c16, c19, c20, premiered, strPath, rating, uniqueid_value from movie_view order by rating desc limit 20'
+      'select idMovie, c00, c01, c03, c08, c16, c19, c20, premiered, strPath, rating, uniqueid_value from movie_view order by rating desc limit 30'
     );
   }, []);
 
