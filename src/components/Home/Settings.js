@@ -1,5 +1,5 @@
 // Libs
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Styles
 import styles from './Settings.scss';
 import { Button, Descriptions } from 'antd';
@@ -13,7 +13,18 @@ const store = new Store();
 // console.log(store.get('dbFileName'));
 
 const Settings = () => {
-  const [data, setData] = useState(store.get('dbFileName'));
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    let dbFileName = store.get('dbFileName');
+    // eslint-disable-next-line no-undefined
+    if (dbFileName === undefined) {
+      setData('./extraResouces/MyVideos107.db');
+    } else {
+      setData(dbFileName);
+    }
+    // console.log('dbfilename is : ' + dbFileName);
+  }, []);
 
   const handleDbFile = () => {
     dialog.showOpenDialog(
@@ -35,9 +46,11 @@ const Settings = () => {
     );
   };
   return (
-    <div className={styles.testcomponent}>
-      <Descriptions title="Settings" bordered>
-        <Descriptions.Item label="Current DB">{data}</Descriptions.Item>
+    <div className={styles.settings}>
+      <Descriptions title="Settings" bordered
+      >
+        <Descriptions.Item label="Current DB" span={6}>{data}</Descriptions.Item>
+        <Descriptions.Item label="Ratings Query"span={4}>select * </Descriptions.Item>
       </Descriptions>
       <br />
       <Button type="primary" onClick={() => handleDbFile()}>
