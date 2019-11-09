@@ -72,6 +72,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "sql.js": "^1.0.0",
+    "typeface-lato": "^0.0.75",
     "xml2json-light": "^1.0.6"
   },
   "devDependencies": {
