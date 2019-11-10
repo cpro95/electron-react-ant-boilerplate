@@ -1,5 +1,5 @@
 {
-  "name": "search_my_movies",
+  "name": "search_my_movie",
   "version": "1.0.0",
   "description": "Electron, Webpack4, React, Babel 7, ES6, PostCSS, Sass, Ant Design",
   "license": "MIT",

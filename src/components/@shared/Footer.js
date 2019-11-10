@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <Layout.Footer className={styles.footer}>
       <img alt="" className={styles.logo} src={IMAGES.LOGO} />
-      electron-react-ant-boilerplate ©2019
+      Search My Movie by electron-react-ant-boilerplate ©2019
     </Layout.Footer>
   );
 };

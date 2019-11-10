@@ -47,10 +47,23 @@ const Settings = () => {
   };
   return (
     <div className={styles.settings}>
-      <Descriptions title="Settings" bordered
-      >
-        <Descriptions.Item label="Current DB" span={6}>{data}</Descriptions.Item>
-        <Descriptions.Item label="Ratings Query"span={4}>select * </Descriptions.Item>
+      <Descriptions title="Settings" bordered>
+        <Descriptions.Item label="Current DB" span={6}>
+          {data}
+        </Descriptions.Item>
+        <Descriptions.Item label="Search Query" span={4}>
+          select idMovie, c00, c01, c03, c08, c16, c19, c20, premiered,
+          strPath,rating, uniqueid_value from movie_view where c00 like %QUERY%
+          order by idMovie desc
+        </Descriptions.Item>
+        <Descriptions.Item label="Latest Query" span={4}>
+          select idMovie, c00, premiered, rating from movie_view order by
+          premiered desc
+        </Descriptions.Item>
+        <Descriptions.Item label="Ratings Query" span={4}>
+          select idMovie, c00, c01, c08, c20, rating from movie_view order by
+          rating desc limit 30
+        </Descriptions.Item>
       </Descriptions>
       <br />
       <Button type="primary" onClick={() => handleDbFile()}>
