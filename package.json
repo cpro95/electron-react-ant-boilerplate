@@ -132,7 +132,7 @@
     "webpack-merge": "^4.2.1"
   },
   "build": {
-    "productName": "Search_My_Movies",
+    "productName": "Search_My_Movie",
     "asar": true,
     "appId": "org.cpro95.Search_My_Movies",
     "files": [
