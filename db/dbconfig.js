@@ -16,13 +16,13 @@ if (store.has('dbFileName')) {
     dbFileName = path.join(
       path.dirname(__dirname),
       'extraResources',
-      'MyVideos107.db'
+      'MyVideos116.db'
     );
   } else {
     dbFileName = path.join(
       process.resourcesPath,
       'extraResources',
-      'MyVideos107.db'
+      'MyVideos116.db'
     );
   }
   module.exports = dbFileName;

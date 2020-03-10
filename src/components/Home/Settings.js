@@ -19,7 +19,7 @@ const Settings = () => {
     let dbFileName = store.get('dbFileName');
     // eslint-disable-next-line no-undefined
     if (dbFileName === undefined) {
-      setData('./extraResouces/MyVideos107.db');
+      setData('./extraResouces/MyVideos116.db');
     } else {
       setData(dbFileName);
     }
